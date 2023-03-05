@@ -1,0 +1,231 @@
+﻿@model HomeVM
+
+<div id="main">
+    <div class="page-content">
+        <section class="row">
+
+            <div class="col-12 col-lg-12">
+                <div class="row">
+                    <div class="col-6 col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <div class="stats-icon blue mb-2">
+                                            <i class="iconly-boldBookmark"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Toplam Blog Sayısı</h6>
+                                        <h6 class="font-extrabold mb-0">@Model.TotalNumbereOfBlogs</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <div class="stats-icon green mb-2">
+                                            <i class="iconly-boldBookmark"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Yayınlanmış Blog Sayısı</h6>
+                                        <h6 class="font-extrabold mb-0">@Model.NumberOfBlogsPublished</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <div class="stats-icon red mb-2">
+                                            <i class="iconly-boldBookmark"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Yayınlanmamış Blog Sayısı</h6>
+                                        <h6 class="font-extrabold mb-0">@Model.NumberOfUnpublishedBlogs</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4> Son 5 Blog Yazım</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-lg">
+                                        <thead>
+                                            <tr>
+                                                <th>Blog Adı</th>
+                                                <th>İçerik</th>
+                                                <th>Durum</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Blogs)
+                                            {
+
+                                                <tr>
+                                                    <td class="col-auto">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar avatar-md">
+                                                                <img src="~/@item.ImagePath">
+                                                            </div>
+                                                            <p class="font-bold ms-3 mb-0">@item.Title</p>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="col-auto">
+                                                        <p class=" mb-0">
+                                                            @if (item.Content.Length > 30)
+                                                            {
+                                                                @Html.Raw(item.Content.Substring(0,30))
+
+                                                            }
+                                                            else
+                                                            {
+                                                                @Html.Raw(item.Content)
+
+                                                            }
+                                                        </p>
+                                                    </td>
+
+                                                    @if (item.IsPublish == true)
+                                                    {
+                                                        <td class="col-auto">
+                                                            <span class="badge bg-light-success">Blog Yayında</span>
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <span class="badge bg-light-danger">Blog Yayında Değil</span>
+                                                        </td>
+                                                    }
+                                                </tr>
+
+
+
+
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <div id="chart"></div>
+
+</div>
+
+@section Scripts{
+
+    <script>
+        var options = {
+            series: [{
+                name: 'Toplam Yazılarım',
+                data: dataSet[0]
+            }, {
+                name: 'Yayınladıklarım',
+                data: dataSet[1]
+            }, {
+                name: 'yayınlamadıklarım',
+                data: dataSet[2]
+            }],
+            chart: {
+                type: 'area',
+                stacked: false,
+                height: 350,
+                zoom: {
+                    enabled: false
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            markers: {
+                size: 0,
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    inverseColors: false,
+                    opacityFrom: 0.45,
+                    opacityTo: 0.5,
+                    stops: [20, 100, 100, 100]
+                },
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: '#8e8da4',
+                    },
+                    offsetX: 0,
+                    formatter: function (val) {
+                        return (val / 1000000).toFixed(2);
+                    },
+                },
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false
+                }
+            },
+            xaxis: {
+                type: 'datetime',
+                tickAmount: 8,
+                min: new Date("01/01/2014").getTime(),
+                max: new Date("12/30/2014").getTime(),
+                labels: {
+                    rotate: -15,
+                    rotateAlways: true,
+                    formatter: function (val, timestamp) {
+                        return moment(new Date(timestamp)).format("DD MMM YYYY")
+                    }
+                }
+            },
+            title: {
+                text: 'Aylara Göre Yazı İstatisliklerim',
+                align: 'left',
+                offsetX: 14
+            },
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'right',
+                offsetX: -10
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+        <script src="~/assets/extensions/apexcharts/apexcharts.min.js" ></script>
+
+                                                </script>
+}

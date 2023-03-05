@@ -1,0 +1,87 @@
+﻿@model Author
+
+<header class="masthead" style="height:60px;background-image: url(https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif);">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <div class="word"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-3 " style="overflow: hidden">
+            <img class="card-img-top" style="border-radius: 15px 50px; width:250px;height:200px;vertical-align:middle" src="@Model.ImageUrl" alt="@Model.Name">
+        </div>
+        <div class="card col-6" style="width:50%;">
+            <div class="card-body ">
+                <h5 class="card-title">@Model.Name @Model.Surname</h5>
+                <p class="card-text">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                    and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var words = ['Merhaba Ben Author', 'Full Stack Developer'],
+            part,
+            i = 0,
+            offset = 0,
+            len = words.length,
+            forwards = true,
+            skip_count = 0,
+            skip_delay = 15,
+            speed = 70;
+        var wordflick = function () {
+            setInterval(function () {
+                if (forwards) {
+                    if (offset >= words[i].length) {
+                        ++skip_count;
+                        if (skip_count == skip_delay) {
+                            forwards = false;
+                            skip_count = 0;
+                        }
+                    }
+                }
+                else {
+                    if (offset == 0) {
+                        forwards = true;
+                        i++;
+                        offset = 0;
+                        if (i >= len) {
+                            i = 0;
+                        }
+                    }
+                }
+                part = words[i].substr(0, offset);
+                if (skip_count == 0) {
+                    if (forwards) {
+                        offset++;
+                    }
+                    else {
+                        offset--;
+                    }
+                }
+                $('.word').text(part);
+            }, speed);
+        };
+
+        $(document).ready(function () {
+            wordflick();
+        });
+    </script>
+}

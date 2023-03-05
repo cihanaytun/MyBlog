@@ -1,0 +1,102 @@
+﻿@model BlogUpdateVM
+
+<div id="main">
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title d-flex justify-content-center">@Model.Title Başlıklı Yazıyı Güncelle</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                <form class="form form-horizontal" method="post" asp-action="Update" asp-controller="Blog" asp-area="Admin" enctype="multipart/form-data">
+                    <div class="form-body">
+                        <div class="row">
+                            <input class="form-control" type="text" id="formFile" asp-for="@Model.Id" hidden>
+                            <div class="form-group">
+                                <label for="first-name-icon">Blog Ana Resim</label>
+                                <div class="position-relative">
+                                    <input class="form-control" type="file" id="formFile" asp-for="@Model.ImageFile">
+                                </div>
+                            </div>
+                            <div class="form-group has-icon-left ">
+                                <label for="first-name-icon">Blog Başlığı</label>
+
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" placeholder="Blog Başlığı " id="first-name-icon" asp-for="@Model.Title">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-blockquote-left"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-icon-left ">
+                                <label for="first-name-icon">Blog Altbaşlığı</label>
+
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" placeholder="Blog Altbaşlığı " id="first-name-icon" asp-for="@Model.SubTitle">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-blockquote-left"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="first-name-icon">Blog İçeriği</label>
+
+                                <div class="position-relative">
+                                    <textarea asp-for="Content" class="form-control"></textarea>
+                                    <span asp-validation-for="Content" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            @Html.DropDownList("Categories",null,"Bir kategori seçin",new{@class="form-control"})
+
+
+                  @*          <div class="input-group  mb-3">
+                                <label for="first-name-icon">Kategori Seçiniz </label><br />
+                                <select id="select" asp-for="C" asp-items=@Model.Categories class="js-example-basic-multiple form-select" name="states[]" multiple="multiple">
+                                </select>
+                            </div>
+*@
+
+
+                            <div class="input-group   row">
+                                <label class="form-check-label text-gray-600 col-2" asp-for="IsPublish">Yayınlansın Mı </label>
+                                <input class="form-check-input me-2 col-1 " type="checkbox" id="IsPublish" asp-for="@Model.IsPublish">
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary me-1 mb-1">
+                                    <i class="bi bi-check-circle"></i> Kaydet
+                                </button>
+                                <a asp-action="Index" asp-controller="Blog" asp-area="Admin" class="btn btn-primary-outline me-1 mb-1">
+                                    <i class="bi bi-x-circle"></i> Vazgeç
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/assets/extensions/filepond/filepond.js"></script>
+    <script src="~/assets/js/pages/filepond.js"></script>
+    <script src="~/assets/extensions/summernote/summernote-lite.min.js"></script>
+    <script src="~/assets/js/pages/summernote.js"></script>
+    <script src="~/assets/extensions/jquery/jquery.min.js"></script>
+    <script src="~/js/jquery.multi-select.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#Content').summernote({
+                height: 250
+            });
+        });
+    </script>
+
+
+}

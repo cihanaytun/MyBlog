@@ -1,0 +1,89 @@
+﻿@model ICollection<Author>
+
+<div id="main">
+    <div class="col-md-6" style="position:relative;margin:auto">
+        <div class="card ">
+            <div class="card-content">
+                <div class="card-body">
+                    <form class="form form-vertical">
+                        @foreach (var author in Model)
+                        {
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="avatar avatar-xl me-3 justify-content-center">
+                                        <img src="~/@author.ImageUrl" alt="image">
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="first-name-icon">Adi</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="Input with icon left" id="first-name-icon" asp-for="@author.Name" disabled>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="first-name-icon">Soyadi</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="Input with icon left" id="first-name-icon" asp-for="@author.Surname" disabled>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="first-name-icon">Kullanici Adi</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="Input with icon left" id="first-name-icon" asp-for="@author.UserName" disabled>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="email-id-icon">Email</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="Email" id="email-id-icon" asp-for="@author.Email" disabled>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-envelope"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="password-id-icon">Sifre</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="Password" id="password-id-icon" asp-for="@author.Password" disabled>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-lock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button class="btn btn-primary me-1 mb-1" asp-action="Update" asp-controller="Author" asp-area="Admin" asp-route-id="@author.Id">
+                                            <i class="bi bi-pencil-square"></i> Duzenle
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>

@@ -1,0 +1,61 @@
+﻿@model IPagedList<Blog>
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+<header class="masthead" style="height:60px;background-image: url('img/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>MyBlog</h1>
+                    <span class="subheading">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            @foreach (var item in Model)
+            {
+                <div class="post-preview mb-5">
+                    <a asp-action="Post" asp-controller="Home" asp-area="" asp-route-id="@item.Id">
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="~/@item.ImagePath" class="card-img-top" alt="image" width="150" height="250">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Title</h5>
+                                    <h6>@item.SubTitle</h6>
+                                </div>
+                            </div>
+                            <div class="post-meta">
+                                @item.Author.Name
+                                @if (item.PublishDate != null)
+                                {
+                                    @item.PublishDate.Value.ToShortDateString()
+                                    ;
+                                }
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex justify-content-center mb-4 mt-3">
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+</div>
+
+@section Scripts{
+}

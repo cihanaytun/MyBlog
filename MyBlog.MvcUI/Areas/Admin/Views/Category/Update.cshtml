@@ -1,0 +1,50 @@
+﻿@model CategoryUpdateVM
+
+<div id="main">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title d-flex justify-content-center"> @Model.Name Kategorisini Düzenle</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                <form class="form form-horizontal" method="post" asp-action="Update" asp-controller="Category" asp-area="Admin">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="form-group has-icon-left ">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" id="first-name-icon" asp-for="@Model.Id" hidden>
+                                </div>
+                            </div>
+                            <div class="form-group  row ">
+                                <div class="col-2">
+                                    <label> Kategori Adı</label>
+                                </div>
+                                <div class="position-relative col-10">
+                                    <input type="text" class="form-control" id="first-name-icon" asp-for="@Model.Name">
+                                </div>
+                            </div>
+                            <div class="form-group  row ">
+                                <div class="col-2">
+                                    <label> Yayınlansın Mı </label>
+                                </div>
+                                <div class="position-relative col-10">
+                                    <div class="form-check form-check-lg d-flex align-items-end">
+                                        <input class="form-check-input me-2" type="checkbox" id="IsPublish" asp-for="@Model.IsPublish">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary me-1 mb-1">
+                                    <i class="bi bi-check-circle"></i> Kaydet
+                                </button>
+                                <a asp-action="Index" asp-controller="Category" asp-area="Admin" class="btn btn-primary-outline me-1 mb-1">
+                                    <i class="bi bi-x-circle"></i> Vazgeç
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

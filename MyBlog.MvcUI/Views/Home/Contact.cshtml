@@ -1,0 +1,44 @@
+﻿@model CreateMessage
+
+<header class="masthead" style="height:60px;background-image: url('../img/contact-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>İletişime Geçin</h1>
+                    <span class="subheading">Sorunuz var mı? Öyleyse bana mail atabilirsin </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="my-5">
+
+
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN" method="post">
+                        <div class="form-floating">
+                            <input asp-for=NameSurname class="form-control" id="name" type="text" placeholder="Adınızı girin..." data-sb-validations="required" data-sb-can-submit="no">
+                            <label for="name">Ad</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Ad alani bos gecilemez.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for=FromEmail class="form-control" id="email" type="email" placeholder="Emailinizi girin..." data-sb-validations="required,email" data-sb-can-submit="no">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-floating">
+                            <textarea asp-for=Message class="form-control" id="message" placeholder="Mesajınızı yaziniz..." style="height: 12rem" data-sb-validations="required" data-sb-can-submit="no"></textarea>
+                            <label for="message">Mesaj</label>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Gonder</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

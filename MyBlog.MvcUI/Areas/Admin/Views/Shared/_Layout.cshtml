@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog - Admin Paneli</title>
+    <link rel="stylesheet" href="~/assets/css/main/app.css">
+    <link rel="stylesheet" href="~/assets/css/main/app-dark.css">
+    <link rel="shortcut icon" href="~/favicon.png" type="image/png">
+    <link rel="stylesheet" href="~/assets/css/shared/iconly.css">
+    <link href="~/summernote/summernote.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/extensions/sweetalert2/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <partial name="_Sidebar" />
+        @RenderBody()
+    </div>
+
+    <partial name="_Footer" />
+
+
+
+    <script src="~/assets/js/bootstrap.js"></script>
+    <script src="~/assets/js/app.js"></script>
+
+    <!-- Need: Apexcharts -->
+    <script src="~/assets/extensions/apexcharts/apexcharts.min.js"></script>
+    <script src="~/assets/js/pages/dashboard.js"></script>
+    <script src="~/jquery/jquery.min.js"></script>
+
+    <script src="~/assets/js/pages/sweetalert2.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

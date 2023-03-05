@@ -1,0 +1,144 @@
+﻿@model ICollection<Blog>
+
+<div id="main">
+    <a asp-action="Create" asp-controller="Blog" asp-area="Admin" class="btn btn-primary mb-4 col-3">
+        <i class="bi bi-plus-lg"></i>   Yeni Yazı Ekle
+    </a>
+    @if (Model.Count == 0)
+    {
+        <h1> Henuz Olusturulmus bir blog yaziniz bulunmamaktadir.</h1>
+    }
+    else
+    {
+        <div class="card" style="background-color: #f2f7ff">
+            <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Yayinlanmis Bloglar
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                            <div class="accordion-body">
+                                <div>
+                                    <section id="content-types">
+                                        <div class="row">
+                                            @foreach (var blog in Model)
+                                            {
+                                                if (blog.IsPublish == true)
+                                                {
+                                                    <div class="col-md-4 col-md-4 col-sm-12">
+                                                        <div class="card">
+                                                            <div class="card-content">
+                                                                <img id="bg" src="~/@blog.ImagePath" class="card-img-top " alt="image" width="150px" height="250px">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">@blog.Title</h5>
+                                                                    <h6>
+                                                                        @if (blog.SubTitle.Length > 20)
+                                                                        {
+                                                                            @blog.SubTitle.Substring(0,20)
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @blog.SubTitle
+                                                                        }
+                                                                    </h6>
+
+                                                                    <p class="card-text">
+                                                                        @Html.Raw(blog.Content.Equals("<p><img width='130px';height='100px'></p>"))
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-footer d-flex " style="text-align-last:center">
+                                                                <div class="col-6">
+                                                                    <a asp-action="Update" asp-controller="Blog" asp-area="Admin" asp-route-id="@blog.Id">
+                                                                        <i class="bi bi-pencil-square"></i>                                                Guncelle
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <a asp-action="Delete" asp-controller="Blog" asp-area="Admin" asp-route-id="@blog.Id">
+                                                                        <i class="bi bi-trash3"></i>
+                                                                        Sil
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Yayinlanmamis Bloglar
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+                            <div class="accordion-body">
+                                <div>
+                                    <section id="content-types">
+                                        <div class="row">
+                                            @foreach (var blog in Model)
+                                            {
+                                                if (blog.IsPublish == false)
+                                                {
+                                                    <div class="col-md-4 col-md-4 col-sm-4">
+                                                        <div class="card">
+                                                            <div class="card-content">
+                                                                <img id="bg" src="~/@blog.ImagePath" class="card-img-top " alt="image" width="150px" height="250px">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">@blog.Title</h5>
+                                                                    <h6>
+                                                                        @if (blog.SubTitle.Length > 20)
+                                                                        {
+                                                                            @blog.SubTitle.Substring(0,20)
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @blog.SubTitle
+                                                                        }
+                                                                    </h6>
+                                                                    <p class="card-text">
+                                                                        @Html.Raw(blog.Content.Equals("<p><img width='130px';height='100px'></p>"))
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-footer d-flex " style="text-align-last:center">
+                                                                <div class="col-6">
+                                                                    <a asp-action="Update" asp-controller="Blog" asp-area="Admin" asp-route-id="@blog.Id">
+                                                                        <i class="bi bi-pencil-square"></i>
+                                                                        Guncelle
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <a asp-action="Delete" asp-controller="Blog" asp-area="Admin" asp-route-id="@blog.Id">
+                                                                        <i class="bi bi-trash3"></i>
+                                                                        Sil
+                                                                    </a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
