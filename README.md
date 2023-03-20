@@ -1,7 +1,7 @@
 # MyBlog
 
 - Admin paneline giriş için gerekli olan bilgiler
-  * Admin email : admine@gmail.com
+  * Admin email : admin@gmail.com
   * Admin şifre : admin123
   
 - Eksik Olan Özellikler
