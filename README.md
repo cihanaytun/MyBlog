@@ -4,8 +4,6 @@
   * Admin email : admin@gmail.com
   * Admin şifre : admin123
   
-- Eksik Olan Özellikler
-  * İletişim sayfasında admin'e email gönderememe
   
 ### *Proje İle İlgili Göreseller*
 ![](https://github.com/cihanaytun/MyBlog/blob/master/ProjectImages/image1.png)
